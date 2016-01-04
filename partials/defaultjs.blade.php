@@ -1,0 +1,1 @@
+<script data-main="{{url(dirTemaToko().'rucksacks/assets/js/app-main')}}" src="{{url('js/require.js')}}"></script> 
