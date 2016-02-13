@@ -37,7 +37,6 @@
                                 <th class="product-name">Jumlah yg belum di Bayar</th>
                                 <th class="product-price">No Resi</th>
                                 <th class="product-action">Status</th>
-                                <a class="pr_name" href="#">Details Order: {{date('d M Y')}}</a>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,14 +108,14 @@
                 </div>
                 <br>
                 <div class="clear"></div>
+                @if($order->jenisPembayaran == 1 && $order->status == 0)
                 <div class="well">
-                @if($order->jenisPembayaran == 1)
                     @if($checkouttype==1)
                     {{-- */ $konfirmasi='konfirmasiorder/' /* --}}  
                     @else
                     {{-- */ $konfirmasi='konfirmasipreorder/' /* --}}   
                     @endif
-                    
+                    <h2 class="konfirmasi">Konfirmasi Pembayaran</h2>
                     {{Form::open(array('url'=> $konfirmasi.$order->id, 'method'=>'put', 'class'=> 'form-horizontal'))}} 
                         <div class="control-group">
                             <label class="control-label" for="inputEmail" > Nama Pengirim</label>
@@ -158,7 +157,7 @@
                         </div>
                         <div class="control-group">
                             <div class="controls right">
-                                <button type="submit" class="btn theme"><i class="icon-check"></i> Konfirmasi Order</button>
+                                <button type="submit" class="btn theme"><i class="icon-check"></i> Konfirmasi</button>
                             </div>
                         </div>
                     {{Form::close()}}

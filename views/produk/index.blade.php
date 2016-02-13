@@ -28,6 +28,9 @@
                     </a>
                     @endforeach
                 </div>
+                <div class="section powerup">
+                    {{pluginSidePowerup()}}
+                </div>
                 <div class="section module-list-items sidebanners">
                     @foreach(vertical_banner() as $key=>$banner)
                     <div class="cat-image">

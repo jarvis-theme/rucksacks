@@ -11,7 +11,7 @@
                 <div class="header">Shopping Cart</div>
                 @if(Shpcart::cart())
                 <ul class="items clearfix">
-                	@foreach (Shpcart::cart()->contents() as $key => $cart)
+                    @foreach (Shpcart::cart()->contents() as $key => $cart)
                     <li>
                         <a href="#" class="item-name">{{$cart['name']}}</a>
                         <span class="item-price">{{ price($cart['qty'] * $cart['price'])}}</span>
@@ -23,7 +23,7 @@
                 <div class="mini-cart-total">
                       <table>
                         <tbody>
-                     	<tr>
+                        <tr>
                           <td class="right"><b>Total:</b></td>
                           <td class="right">{{ price(Shpcart::cart()->total() )}}</td>
                         </tr>

@@ -23,7 +23,6 @@
             <div class="row">
                 <!-- SIDE BAR -->
                 <div class="col-xs-12 col-sm-4 col-lg-3 pull-left sidebar">
-                    <!-- CATEGORIES LIST -->
                     <div class="accordionmenu section">
                         <h4 class="section-title">Koleksi</h4>
                         @foreach(list_koleksi() as $mykoleksi)
@@ -32,8 +31,9 @@
                         </a>
                         @endforeach
                     </div>
-
-                    <!-- BANNER MODULE -->
+                    <div class="section powerup">
+                        {{pluginSidePowerup()}}
+                    </div>
                     <div class="section module-list-items sidebanners">
                         @foreach(vertical_banner() as $key=>$banner)
                         <div class="cat-image">
@@ -43,7 +43,6 @@
                         </div>
                         @endforeach
                     </div>
-                    <!-- /BANNER MODULE -->
                 </div>
                 <!-- /SIDE BAR -->
 
@@ -123,7 +122,7 @@
                                                 <div class="space30 clearfix"></div>
                                                 
                                                 <div class="clearfix">
-                                                    Jumlah : <input class="compact" type="text" name='qty' value="1" size="2" id="qty-input">
+                                                    Jumlah : <input class="compact" type="text" name="qty" value="1" size="2" id="qty-input">
                                                 </div>
                                                 
                                                 <div class="space30 clearfix"></div>
@@ -174,7 +173,7 @@
                     <!-- /SINGLE PRODUCT DETAILS -->
                     <div class="bs-example bs-example-tabs">
                         <ul id="myTab" class="nav nav-tabs">
-                            <li class="active"><a href="#home" data-toggle="tab">Description</a></li>
+                            <li class="active"><a href="#home" data-toggle="tab">Deskripsi</a></li>
                             <li><a href="#detail" data-toggle="tab">Detail</a></li>
                             <li><a href="#review" data-toggle="tab">Review</a></li>
                         </ul>
@@ -183,7 +182,7 @@
                             <div class="tab-pane fade" id="detail">
                                 <ul>
                                     <li><span>Berat:</span> {{$produk->berat}} gram</li>
-                                    <li><span>Stock:</span> {{$produk->stok}}</li>
+                                    <li><span>Stok:</span> {{$produk->stok}}</li>
                                     <li><span>Vendor:</span> {{$produk->vendor}}</li>
                                 </ul>
                             </div>
@@ -197,7 +196,7 @@
                         <div class="container">
                             <div class="row carousel-iframe offer">
                                 <div class="col-xs-12 col-sm-12">
-                                    <h4 class="section-title">RELATED PRODUCTS</h4>
+                                    <h4 class="section-title">PRODUK LAINNYA</h4>
                                     <div class="section-inner">
                                         <!-- carousel control nav direction -->
                                         <div class="carousel-direction-arrows">
@@ -236,7 +235,7 @@
                                                         </a>
                                                         <div class="product-info clearfix">
                                                             <h4 class="title">
-                                                              <a href="{{product_url($myproduk)}}">{{$myproduk->nama}}</a>
+                                                              <a href="{{product_url($myproduk)}}">{{short_description($myproduk->nama, 20)}}</a>
                                                             </h4>
                                                             @if($setting->checkoutType!=2)
                                                             <div class="details">

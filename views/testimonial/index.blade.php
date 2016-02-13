@@ -22,6 +22,10 @@
             <div class="row">
                 <!-- SIDE BAR -->
                 <div class="col-xs-12 col-sm-4 col-lg-3 pull-left sidebar">
+                    <div class="section powerup">
+                        {{pluginSidePowerup()}}
+                    </div>
+                    @if(vertical_banner()->count() > 0)
                     <div class="section module-list-items sidebanners">
                         @foreach(vertical_banner() as $key=>$banner)
                         <div class="cat-image">
@@ -31,6 +35,7 @@
                         </div>
                         @endforeach
                     </div>
+                    @endif
                 </div>
                 <!-- /SIDE BAR -->
 

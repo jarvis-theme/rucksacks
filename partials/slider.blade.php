@@ -5,12 +5,12 @@
             @foreach(slideshow() as $val)
             <li>
                 <center>
-                    @if($val->text=='')
-                    <a href="#">
+                    @if(!empty($val->url))
+                    <a href="{{filter_link_url($val->url)}}" target="_blank">
                     @else
-                    <a href="{{filter_link_url($val->text)}}" target="_blank">
+                    <a href="#">
                     @endif
-                        {{HTML::image(slide_image_url($val->gambar),'Slide',array('class'=>'slide-img'))}}
+                        {{HTML::image(slide_image_url($val->gambar), $val->title, array('class'=>'slide-img'))}}
                     </a>
                 </center>
             </li>

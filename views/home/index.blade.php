@@ -30,8 +30,6 @@
                                         <a href="{{product_url($myproduk)}}" class="product-link clearfix">
                                             @if(is_terlaris($myproduk))
                                                 <div class="ribbon hot">Terlaris</div>
-                                            @elseif(is_produkbaru($myproduk))
-                                                <span class="ribbon new">Baru</span>
                                             @elseif(is_outstok($myproduk))
                                                 <div class="ribbon empty">Kosong</div>
                                             @endif

@@ -824,7 +824,6 @@ input[type="text"].error,input[type="email"].error,input[type="password"].error,
 		.header-cart {
 			display: table;
 			float: right;
-			/*height: 100%;*/
 			z-index: 9999;
 		}
 		.header-cart > .inner {
@@ -2268,9 +2267,7 @@ color: #FFF;
 color: #FFF;
 }
 
-@media screen and (max-width: 768px){
-	.home-container .tab-content .product {float:none !important}
-}
+
 .section  h4.section-title {font-size:18px;}
 .section .section-title {
 	text-transform: uppercase;
@@ -3080,11 +3077,7 @@ color: #FFF;
 	box-shadow: inset 0 -1px 3px rgba(0,0,0,0.1);
 	-webkit-box-shadow: inset 0 -1px 3px rgba(0,0,0,0.1);
 }
-@media screen and (max-width: 480px){
-	.breadcrumbs-wrapper > .container{
-		margin-top: 10px
-	}
-}
+
 .lte8 .breadcrumbs-wrapper {
 	border-bottom: 1px solid #e9e9e9;
 }
@@ -4247,9 +4240,22 @@ body, h1, h2, h3, h4, h5, h6, input, select, textarea, .form-control, button {
 .autowidth{width: auto !important}.compact{display: compact}#button-cart{padding: 15px 20px !important}
 .sosmed{margin: 20px 0px; border-top: 1px solid #EEE; padding: 20px 0px}.img-otherprod{height:220px}
 .shpcart{width: 100%;text-align:right}.label{color: #fefefe}.blogtitle{margin: 0}
-input.button{background-color: #e6d86d; color: #3f3e3e}
+input.button {background-color: #e6d86d; color: #3f3e3e}
+.powerup form input[type="submit"] {background-color: #e6d86d; color: #3f3e3e; margin-top: 10px; border: none; padding: 10px;}
+.powerup form input[type="submit"]:hover{opacity: 0.6;}
 .desc-out{padding: 0}.cat-image{margin-top: 5px}a.button{background-color: #3f3e3e}.sidebanners{float: none; text-align: center}
+.slide-img{height:435px;width:auto}.table-responsive{ width: 100%;overflow-y: hidden }
+.logo img{max-height: 100px; width: 100%}.full-width{width: 100%;}.captcha{width: 20%}
+
+@media screen and (max-width: 768px){
+	.home-container .tab-content .product {float:none !important}
+}
+@media screen and (max-width: 480px){
+	.breadcrumbs-wrapper > .container{
+		margin-top: 10px
+	}
+	.konfirmasi{font-size: 22px}
+}
 @media screen and (min-width: 320px) and (max-width: 480px){
 	#menu-container{top: 23px}
 }
-.slide-img{height:435px;width:auto}.table-responsive{ width: 100%;overflow-y: hidden }

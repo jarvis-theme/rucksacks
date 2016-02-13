@@ -155,7 +155,7 @@
                 </div>
                 <!-- PAGINATION -->
                 @else
-                <article class="noresult"><i>Hasil tidak ditemukan</i></article>
+                <article class="noresult"><i>Data tidak ditemukan</i></article>
                 @endif
             </div>
             <!-- /MAIN CONTENT -->

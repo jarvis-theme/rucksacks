@@ -2,7 +2,7 @@
 {{generate_theme_css('rucksacks/assets/css/fonts/icomoon/style.css')}}  
 {{generate_theme_css('rucksacks/assets/css/bootstrap.min.css')}}  
 @if($tema->isiCss=='')
-	{{generate_theme_css('rucksacks/assets/css/style.css?v=002')}}  
+	{{generate_theme_css('rucksacks/assets/css/style.css')}}  
 @else
 	{{generate_theme_css('rucksacks/assets/css/editstyle.css')}}  
 @endif

@@ -6,18 +6,18 @@
                 <!-- logo -->
                 <div class="col-xs-7 col-sm-7 logo-container">
                     <strong class="logo ">
-                    @if(@getimagesize(URL::to( logo_image_url() )))
+                    @if( logo_image_url() )
                         <a href="{{URL::to('home')}}">
-                            {{HTML::image(logo_image_url(),'logo',array('style'=>'max-height: 100px; width: 100%'))}}
+                            {{HTML::image(logo_image_url(),'logo '.Theme::place('title'))}}
                         </a>
                     @else
-                        <a style="text-decoration:none" href="{{URL::to('home')}}"><h1>{{ Theme::place('title') }}</h1></a>
+                        <a href="{{URL::to('home')}}"><h1>{{ Theme::place('title') }}</h1></a>
                     @endif
                     </strong>
                 </div>
                 <!-- /logo -->
                 <div class="col-xs-5 col-sm-5 cart-container">
-                    <div class="header-cart" style="width: 100%;">
+                    <div class="header-cart full-width">
                         <div class="search-cont">
                             <form action="{{URL::to('search')}}" method="post">
                                 <input id="search" type="text" name="search" class="query" placeholder="Cari Produk">

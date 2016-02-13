@@ -105,7 +105,7 @@
                                         </tr>
                                         <tr>
                                             <td><span class="required">*</span> Captcha:</td>
-                                            <td class="inputform" style="width: 20%"><input type="text" name="captcha" placeholder="Masukan text berikut" required ></td>
+                                            <td class="inputform captcha"><input type="text" name="captcha" placeholder="Masukan text berikut" required ></td>
                                         </tr>
                                         <tr>
                                             <td></td>
