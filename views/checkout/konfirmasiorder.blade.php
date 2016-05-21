@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-lg-12 main">
                 <!-- CART ITEMS -->
-                <div class="section">
+                <div class="section table-responsive">
                     <table class="my-cart">
                         <thead>
                             <tr>
@@ -34,7 +34,9 @@
                                 <th class="product-action hidden-xs">Tgl Order</th>
                                 <th class="product-name">Detail Produk</th>
                                 <th class="product-price">Total</th>
+                                @if($checkouttype != 1)
                                 <th class="product-name">Jumlah yg belum di Bayar</th>
+                                @endif
                                 <th class="product-price">No Resi</th>
                                 <th class="product-action">Status</th>
                             </tr>
@@ -55,6 +57,7 @@
                                 @endif
                                 </td>
                                 <td>{{ price($order->total) }}</td>
+                                @if($checkouttype != 1)
                                 <td class="align_center vline">
                                     @if($checkouttype==1)
                                         - {{ price($order->total) }}
@@ -68,6 +71,7 @@
                                         @endif
                                     @endif
                                 </td>
+                                @endif
                                 <td class="align_center vline">{{ $order->noResi }}</td>
                                 <td class="align_center vline">
                                     @if($checkouttype==1)
@@ -108,92 +112,118 @@
                 </div>
                 <br>
                 <div class="clear"></div>
-                @if($order->jenisPembayaran == 1 && $order->status == 0)
                 <div class="well">
-                    @if($checkouttype==1)
-                    {{-- */ $konfirmasi='konfirmasiorder/' /* --}}  
-                    @else
-                    {{-- */ $konfirmasi='konfirmasipreorder/' /* --}}   
-                    @endif
-                    <h2 class="konfirmasi">Konfirmasi Pembayaran</h2>
-                    {{Form::open(array('url'=> $konfirmasi.$order->id, 'method'=>'put', 'class'=> 'form-horizontal'))}} 
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail" > Nama Pengirim</label>
-                            <div class="controls">
-                                <input class="span6" type="text" name="nama" value="{{Input::old('nama')}}" required>
+                    @if($order->jenisPembayaran == 1 && $order->status == 0)
+                        @if($checkouttype==1)
+                        {{-- */ $konfirmasi='konfirmasiorder/' /* --}}  
+                        @else
+                        {{-- */ $konfirmasi='konfirmasipreorder/' /* --}}   
+                        @endif
+
+                        <h2 class="konfirmasi">{{trans('content.step5.confirm_btn')." ".trans('content.step3.transfer')}}</h2>
+                        <hr>
+                        {{Form::open(array('url'=> $konfirmasi.$order->id, 'method'=>'put', 'class'=> 'form-horizontal'))}} 
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail" > Nama Pengirim</label>
+                                <div class="controls">
+                                    <input class="span6" type="text" name="nama" value="{{Input::old('nama')}}" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail"> No Rekening</label>
-                            <div class="controls">
-                                <input type="text" class="span6" name="noRekPengirim" value="{{Input::old('noRekPengirim')}}" required>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail"> No Rekening</label>
+                                <div class="controls">
+                                    <input type="text" class="span6" name="noRekPengirim" value="{{Input::old('noRekPengirim')}}" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail"> Rekening Tujuan</label>
-                            <div class="controls" id="rek">
-                                <select name="bank" id="reklist">
-                                    <option value="">-- Pilih Bank Tujuan --</option>
-                                    @foreach (list_banks() as $bank)
-                                    <option value="{{$bank->id}}">{{$bank->bankdefault->nama}} - {{$bank->noRekening}} - A/n {{$bank->atasNama}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail"> Rekening Tujuan</label>
+                                <div class="controls" id="rek">
+                                    <select name="bank" id="reklist">
+                                        <option value="">-- Pilih Bank Tujuan --</option>
+                                        @foreach ($banktrans as $bank)
+                                        <option value="{{$bank->id}}">{{$bank->bankdefault->nama}} - {{$bank->noRekening}} - A/n {{$bank->atasNama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail"> Jumlah</label>
-                            <div class="controls">
-                                @if($checkouttype==1)
-                                <input class="span6" type="text" name="jumlah" value="{{$order->total}}" required>
-                                @else
-                                    @if($order->status < 2)
-                                    <input class="span6" type="text" name="jumlah" value="{{$order->dp}}" required>
-                                    @elseif(($order->status > 1 && $order->status < 4) || $order->status==7)
-                                    <input class="span6" type="text" name="jumlah" value="{{$order->total - $order->dp}}" required>
+                            <br>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail"> Jumlah</label>
+                                <div class="controls">
+                                    @if($checkouttype==1)
+                                    <input class="span6" type="text" name="jumlah" value="{{$order->total}}" required>
+                                    @else
+                                        @if($order->status < 2)
+                                        <input class="span6" type="text" name="jumlah" value="{{$order->dp}}" required>
+                                        @elseif(($order->status > 1 && $order->status < 4) || $order->status==7)
+                                        <input class="span6" type="text" name="jumlah" value="{{$order->total - $order->dp}}" required>
+                                        @endif
                                     @endif
-                                @endif
+                                </div>
+                            </div><br>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button type="submit" class="btn theme"><i class="icon-check"></i> {{trans('content.step5.confirm_btn')}}</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls right">
-                                <button type="submit" class="btn theme"><i class="icon-check"></i> Konfirmasi</button>
-                            </div>
-                        </div>
-                    {{Form::close()}}
-                @endif
-                @if($paymentinfo!=null)
-                <h3><center>Paypal Payment Details</center></h3><br>
-                <hr>
-                <div class="table-responsive">
-                    <table class='table table-bordered'>
-                        <tr><td>Payment Status</td><td>:</td><td>{{$paymentinfo['payment_status']}}</td></tr>
-                        <tr><td>Payment Date</td><td>:</td><td>{{$paymentinfo['payment_date']}}</td></tr>
-                        <tr><td>Address Name</td><td>:</td><td>{{$paymentinfo['address_name']}}</td></tr>
-                        <tr><td>Payer Email</td><td>:</td><td>{{$paymentinfo['payer_email']}}</td></tr>
-                        <tr><td>Item Name</td><td>:</td><td>{{$paymentinfo['item_name1']}}</td></tr>
-                        <tr><td>Receiver Email</td><td>:</td><td>{{$paymentinfo['receiver_email']}}</td></tr>
-                        <tr><td>Total Payment</td><td>:</td><td>{{$paymentinfo['payment_gross']}} {{$paymentinfo['mc_currency']}}</td></tr>
-                    </table>
-                </div>
-                <p>Thanks you for your order.</p><br>
-                @endif 
-              
-                @if($order->jenisPembayaran==2)
-                <h3><center>Konfirmasi Pemabayaran Via Paypal</center></h3><br>
-                <p>Silakan melakukan pembayaran dengan paypal Anda secara online via paypal payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum {{$expired}}. Klik tombol "Bayar Dengan Paypal" di bawah untuk melanjutkan proses pembayaran.</p>
-                {{$paypalbutton}}<br>
-                @elseif($order->jenisPembayaran==6)
-                    @if($order->status == 0)
-                    <h3><center>Konfirmasi Pembayaran Via Bitcoin</center></h3><br>
-                    <p>Silahkan melakukan pembayaran dengan bitcoin Anda secara online via bitcoin payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum <b>{{$expired_bitcoin}}</b>. Klik tombol "Pay with Bitcoin" di bawah untuk melanjutkan proses pembayaran.</p>
-                    {{$bitcoinbutton}}
-                    <br>
-                    @else
-                    <h3><center>Konfirmasi Pembayaran Via Bitcoin</center></h3><br>
-                    <p><center><b>Batas waktu pembayaran bicoin anda telah habis.</b></center></p>
+                        {{Form::close()}}
                     @endif
-                @endif
+                    @if($paymentinfo!=null)
+                    <h3><center>Paypal Payment Details</center></h3><br>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class='table table-bordered'>
+                            <tr><td>Payment Status</td><td>:</td><td>{{$paymentinfo['payment_status']}}</td></tr>
+                            <tr><td>Payment Date</td><td>:</td><td>{{$paymentinfo['payment_date']}}</td></tr>
+                            <tr><td>Address Name</td><td>:</td><td>{{$paymentinfo['address_name']}}</td></tr>
+                            <tr><td>Payer Email</td><td>:</td><td>{{$paymentinfo['payer_email']}}</td></tr>
+                            <tr><td>Item Name</td><td>:</td><td>{{$paymentinfo['item_name1']}}</td></tr>
+                            <tr><td>Receiver Email</td><td>:</td><td>{{$paymentinfo['receiver_email']}}</td></tr>
+                            <tr><td>Total Payment</td><td>:</td><td>{{$paymentinfo['payment_gross']}} {{$paymentinfo['mc_currency']}}</td></tr>
+                        </table>
+                    </div>
+                    <p>Thanks you for your order.</p><br>
+                    @endif 
+              
+                    @if($order->jenisPembayaran==2)
+                        <center>
+                            <h2><b>{{trans('content.step5.confirm_btn')}} Paypal</b></h2><hr>
+                            <p>{{trans('content.step5.paypal')}}</p>
+                        </center><br>
+                        <center id="paypal">{{$paypalbutton}}</center>
+                        <br>
+                    @elseif($order->jenisPembayaran==4) 
+                        @if(($checkouttype==1 && $order->status < 2) || ($checkouttype==3 && ($order->status!=6)))
+                        <center>
+                            <h2><b>{{trans('content.step5.confirm_btn')}} iPaymu</b></h2><hr>
+                            <p>{{trans('content.step5.ipaymu')}}</p><br>
+                            <a class="btn btn-info" href="{{url('ipaymu/'.$order->id)}}" target="_blank">{{trans('content.step5.ipaymu_btn')}}</a>
+                            <br>
+                        </center>
+                        @endif
+                    @elseif($order->jenisPembayaran==5 && $order->status == 0)
+                        <center>
+                            <h2><b>{{trans('content.step5.confirm_btn')}} DOKU MyShortCart</b></h2><hr>
+                            <p>{{trans('content.step5.doku')}}</p><br>
+                            {{ $doku_button }}
+                            <br>
+                        </center>
+                    @elseif($order->jenisPembayaran == 6 && $order->status == 0)
+                        <center>
+                            <h2><b>{{trans('content.step5.confirm_btn')}} Bitcoin</b></h2><hr>
+                            <p>{{trans('content.step5.bitcoin')}}</p><br>
+                            {{$bitcoinbutton}}
+                            <br>
+                        </center>
+                    @elseif($order->jenisPembayaran == 8 && $order->status == 0)
+                        <center>
+                            <h2><b>{{trans('content.step5.confirm_btn')}} Veritrans</b></h2><hr>
+                            <p>{{trans('content.step5.veritrans')}}</p><br>
+                            <button class="btn-veritrans" onclick="location.href='{{ $veritrans_payment_url }}'">{{trans('content.step5.veritrans_btn')}}</button>
+                            <br>
+                        </center>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

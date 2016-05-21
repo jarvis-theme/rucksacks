@@ -38,7 +38,7 @@
                         @foreach(vertical_banner() as $key=>$banner)
                         <div class="cat-image">
                             <a href="{{URL::to($banner->url)}}">
-                                {{HTML::image(banner_image_url($banner->gambar),'Info Promo')}}
+                                {{HTML::image(banner_image_url($banner->gambar),'Info Promo')}} 
                             </a>
                         </div>
                         @endforeach
@@ -54,7 +54,7 @@
                             <div class="col-xs-12 col-sm-6">
                                 <div class="product-album" >
                                     <a href="#">
-                                        {{HTML::image(product_image_url($produk->gambar1,'large'),$produk->nama)}}
+                                        {{HTML::image(product_image_url($produk->gambar1,'large'),$produk->nama)}} 
                                     </a>
                     
                                     <ul class="unstyled ">
@@ -163,7 +163,7 @@
                                         <div class="space20 clearfix"></div>
                                         <br><br>
                                         <div class="sosmed">
-                                            {{sosialShare(product_url($produk))}}
+                                            {{sosialShare(product_url($produk))}} 
                                         </div>
                                     </div>
                                 </div>
@@ -183,10 +183,10 @@
                                 <ul>
                                     <li><span>Berat:</span> {{$produk->berat}} gram</li>
                                     <li><span>Stok:</span> {{$produk->stok}}</li>
-                                    <li><span>Vendor:</span> {{$produk->vendor}}</li>
+                                    <li><span>Brand:</span> {{$produk->vendor}}</li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="review">{{pluginTrustklik()}}</div>
+                            <div class="tab-pane fade" id="review">{{ pluginComment(product_url($produk), @$produk) }}</div>
                         </div>
                     </div>
 
@@ -230,7 +230,7 @@
                                                             <div class="ribbon empty">Kosong</div>
                                                             @endif
                                                             <div class="product-thumbnail">
-                                                                {{HTML::image(product_image_url($myproduk->gambar1,'medium'), $myproduk->nama, array('class' => 'img-otherprod'))}}
+                                                                {{HTML::image(product_image_url($myproduk->gambar1,'medium'), $myproduk->nama, array('class' => 'img-otherprod'))}} 
                                                             </div>
                                                         </a>
                                                         <div class="product-info clearfix">

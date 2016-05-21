@@ -79,7 +79,9 @@
                     <div class="widget widget-subs">
                         <ul class="card-icons">
                             @foreach(list_banks() as $value)
-                            <li>{{HTML::image(bank_logo($value), $value->bankdefault->nama, array('title'=>$value->bankdefault->nama))}}</li>
+                                @if($value->status == 1)
+                                <li>{{HTML::image(bank_logo($value), $value->bankdefault->nama, array('title'=>$value->bankdefault->nama))}}</li>
+                                @endif
                             @endforeach
                             @foreach(list_payments() as $pay)
                                 @if($pay->nama == 'paypal' && $pay->aktif == 1)
@@ -94,6 +96,9 @@
                             @endforeach
                             @if(count(list_dokus()) > 0 && list_dokus()->status == 1)
                             <li><img src="{{URL::to('img/bank/doku.jpg')}}" alt="Doku" /></li>
+                            @endif
+                            @if(count(list_veritrans()) > 0 && list_veritrans()->status == 1 && list_veritrans()->type == 1)
+                            <li><img src="{{url('img/bank/veritrans.png')}}" alt="Veritrans" title="Veritrans"></li>
                             @endif
                         </ul>
                     </div>
@@ -140,4 +145,4 @@
     </div>
 </div>
 <!-- /SITE FOOTER -->
-{{pluginPowerup()}}
+{{pluginPowerup()}} 

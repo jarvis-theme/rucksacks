@@ -73,10 +73,10 @@
                     <div class="section zerotop">
                         <div class="col-xs-4 col-sm-12" >
                             <ul class="direction-nav pagination-direction float-left">
-                                <li><a href="{{@$prev->slug}}" class="btn btn-prev {{ @$prev->id==''?'disabled':'' }}"><span class="icon-arrow-left10"></span></a></li>
+                                <li><a href="{{blog_url(prev_blog())}}" class="btn btn-prev {{ @$prev->id==''?'disabled':'' }}"><span class="icon-arrow-left10"></span></a></li>
                             </ul>
                             <ul class="direction-nav pagination-direction float-right">
-                                <li><a href="{{@$next->slug}}" class="btn btn-next {{ @$next->id==''?'disabled':'' }}"><span class="icon-arrow-right9"></span></a></li>
+                                <li><a href="{{blog_url(next_blog())}}" class="btn btn-next {{ @$next->id==''?'disabled':'' }}"><span class="icon-arrow-right9"></span></a></li>
                             </ul>
                         </div>
                     </div>

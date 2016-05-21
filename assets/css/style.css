@@ -4246,6 +4246,25 @@ input.button {background-color: #e6d86d; color: #3f3e3e}
 .desc-out{padding: 0}.cat-image{margin-top: 5px}a.button{background-color: #3f3e3e}.sidebanners{float: none; text-align: center}
 .slide-img{height:435px;width:auto}.table-responsive{ width: 100%;overflow-y: hidden }
 .logo img{max-height: 100px; width: 100%}.full-width{width: 100%;}.captcha{width: 20%}
+.table-responsive { overflow-x: auto; }
+center#paypal button[type="submit"] {
+  background: #019CDE;
+  border: none;
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
+}
+center#paypal button[type="submit"]:hover { opacity: 0.6; cursor: pointer; }
+form[name="order"] > input[name="SAVE"] {
+  background: #B5062D; border: medium none; padding: 10px; border-radius: 5px; color: #fff;
+}
+form[name="order"] > input[name="SAVE"]:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.btn-veritrans { background: #00aee7; border: none; padding: 10px; border-radius: 5px; color: #fff }
+.btn-veritrans:hover { cursor: pointer; opacity: 0.7; color: #fff }
+
 
 @media screen and (max-width: 768px){
 	.home-container .tab-content .product {float:none !important}
